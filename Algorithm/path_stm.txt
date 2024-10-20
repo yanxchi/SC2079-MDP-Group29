@@ -1,0 +1,30 @@
+nw000
+nw120
+ne000
+snap 1
+nc070
+nx072
+nz070
+snap 3
+nw022
+nc090
+nx028
+nc068
+snap 5
+nc014
+nw077
+ne002
+snap 6
+nz030
+nc060
+nw060
+snap 4
+nw049
+nw122
+ne049
+snap 2
+ne116
+nw064
+ne064
+nw026
+snap 7
