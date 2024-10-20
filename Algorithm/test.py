@@ -1,24 +1,108 @@
+from Algo.hamiltonian import greedy, dp, get_distance_matrix
+from Algo.dubins import Dubins
+from Algo.reeds_shepp import ReedsShepp
+from Algo.entity import Target
 from Algo.sim import Grid
+from Algo.astar import astar
+from Algo.rrt import rrt
+from Algo.hstar import hstar
+from Algo.path import Path
 from Algo.utils import *
 import numpy as np
+import time
 
-#TODO: Implement a better simulation(pygame, webapp)
+CAR_START = (0.5, 0, np.pi/2)
+CAR_END = (2.5, 0, -np.pi/2)
+
+def write_path(path):
+    ss = ""
+    for p in path:
+        print(p)
+        for pseg in p:
+            print(pseg)
+            for coords in pseg.path_coords:
+                ss += f"{coords[0]:.8f} {coords[1]:.8f} {coords[2]:.8f}\n"
+    
+    return ss
+
+def write_stm(path, order):
+    ss = ""
+    for id, p in enumerate(path):
+        for pseg in p:
+            if pseg.forward and pseg.straight:
+                ss += f"nw{round(pseg.len*20)%350:0>3}\n"
+            elif pseg.forward and not pseg.straight and pseg.steering=="R":
+                ss += f"ne{round(pseg.angle/np.pi * 180)%360:0>3}\n"
+            elif pseg.forward and not pseg.straight and pseg.steering=="L":
+                ss += f"nw{round(pseg.angle/np.pi * 180)%360:0>3}\n"
+            elif not pseg.forward and pseg.straight:
+                ss += f"nx{round(pseg.len*20)%360:0>3}\n"
+            elif not pseg.forward and not pseg.straight and pseg.steering=="R":
+                ss += f"nc{round(pseg.angle/np.pi * 180)%360:0>3}\n"
+            elif not pseg.forward and not pseg.straight and pseg.steering=="L":
+                ss += f"nz{round(pseg.angle/np.pi * 180)%360:0>3}\n"
+        ss += f"snap {order[id].id}\n"
+    return ss
+
 def main():
-    from Algo.entity import Car, Target
-    from Algo.path import Path
-    targetlst = [Target(15.5, 7.5, "W"), Target(9.5, 6.5, "S"), Target(9.5,12.5, "E"), Target(5.5,15.5, "W"), Target(15.5,16.5, "S")]
+    targetlst = [Target(8.5, 0.5, "E", 1), Target(6.5, 6.5, "S", 2), Target(17.5, 6.5, "W", 3),Target(9.5, 10.5, "N", 4),Target(6.5, 14.5, "E", 5), Target(13.5, 14.5, "N", 6), Target(0.5, 19.5, "W", 7)]
 
-    car = Car()
-    grid = Grid(targetlst)
-    while(True):
-        grid.draw_grid(car)
-        print(car.angle, car.direction)
-        print(car.y, car.x)
-        direction = input("Enter direction: ")
-        if(direction=="Forward"): car.move(Path(car.getpos(), len=1), grid)
-        if(direction=="Backward"): car.move(Path(car.getpos(), len=-1), grid)
-        if(direction=="Left"): car.move(Path(car.getpos(), pivot=get_pivot(car.getpos(), 2, "L"), angle=np.pi/2), grid)
-        if(direction=="Right"): car.move(Path(car.getpos(), pivot=get_pivot(car.getpos(), 2, "R"), angle=-np.pi/2), grid)
+    target2 = targetlst.copy()
+    env = Grid(targetlst.copy(), turning=1.2, straight=0.8)
+    order = []
+    path = []
+    time1 = time.time()
 
-if __name__ == "__main__":
+    dist = dp(targetlst, env=env, order=order, path=path, algo_car=ReedsShepp, algo_search=astar, radius=2.4)
+
+    print("length" , dist*10)
+    time2 = time.time()
+    print("time taken:", time2-time1)
+
+    # ----------------------------------------------------SIMULATOR CODE----------------------------------------------------------------
+
+    # #directory of res/raw of android studio project folder
+    # save_directory = r"C:\Y3 S1\SC2079 - Multidisciplinary Design Project\Android Code\app\src\main\res\raw" #replace path as needed
+    # if not os.path.exists(save_directory):
+    #     os.makedirs(save_directory)
+
+    # #writing path coordinates to path.txt in res/raw in android studio project folder
+    # for p in path:
+    #     for coords in p.path_coords:
+    #         ss += f"{coords[0]:.8f} {coords[1]:.8f} {coords[2]:.8f}\n"
+
+    # file_path = os.path.join(save_directory, "path.txt")
+
+    # with open(file_path, "w") as f:
+    #     f.write(ss)
+
+    # #writing obstacle info to obstacle.txt in res/raw in android studio project folder
+    # obstacles_file_path = os.path.join(save_directory, "obstacles.txt")
+    # with open(obstacles_file_path, "w") as f:
+    #     for target in targetlst:
+    #         y_coord = int(target.y)  #rounded down to the nearest whole number
+    #         x_coord = int(target.x)
+    #         direction = ""
+
+    #         if target.direction == "N":
+    #             direction = "NORTH"
+    #         elif target.direction == "S":
+    #             direction = "SOUTH"
+    #         elif target.direction == "E":
+    #             direction = "EAST"
+    #         elif target.direction == "W":
+    #             direction = "WEST"
+
+    #         #file format: ycoord xcoord dir
+    #         f.write(f"{y_coord} {x_coord} {direction}\n")
+
+# ----------------------------------------------------SIMULATOR CODE----------------------------------------------------------------
+                
+
+    for entity in order:
+        print(entity.id)
+    plot_path(obstacles=target2, path=path_to_coord(path), start=(0.5, 1.5, np.pi/2))
+
+if __name__ == "__main__": 
+    #Debug code
     main()

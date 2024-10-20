@@ -406,22 +406,6 @@ class ReedsShepp:
                         tmp.append(Path(start=tmp[-1].goal, angle=round(path[i].param/np.pi *180)/180 * np.pi, steering="R", forward=path[i].gear == Gear.FORWARD, radius=turning_radius))
                     else:
                         tmp.append(Path(start=tmp[-1].goal, len=round(path[i].param*turning_radius), forward=path[i].gear == Gear.FORWARD))
-                
-                # optimistic algorithm
-                # if i == 0:
-                #     if path[i].steering == Steering.LEFT:
-                #         tmp.append(Path(start=start, angle=path[i].param, steering="L", forward=path[i].gear == Gear.FORWARD, radius=turning_radius))
-                #     elif path[i].steering == Steering.RIGHT:
-                #         tmp.append(Path(start=start, angle=path[i].param, steering="R", forward=path[i].gear == Gear.FORWARD, radius=turning_radius))
-                #     else:
-                #         tmp.append(Path(start=start, len=path[i].param*turning_radius, forward=path[i].gear == Gear.FORWARD))
-                # else:
-                #     if path[i].steering == Steering.LEFT:
-                #         tmp.append(Path(start=tmp[-1].goal, angle=path[i].param, steering="L", forward=path[i].gear == Gear.FORWARD, radius=turning_radius))
-                #     elif path[i].steering == Steering.RIGHT:
-                #         tmp.append(Path(start=tmp[-1].goal, angle=path[i].param, steering="R", forward=path[i].gear == Gear.FORWARD, radius=turning_radius))
-                #     else:
-                #         tmp.append(Path(start=tmp[-1].goal, len=path[i].param*turning_radius, forward=path[i].gear == Gear.FORWARD))
             ret.append(tmp)
 
         for i in range(len(ret)):
