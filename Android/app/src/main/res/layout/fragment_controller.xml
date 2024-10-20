@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/tabBackgroundColor">
+
+    <Button
+        android:id="@+id/moveForwardRightButton"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/baseline_subdirectory_arrow_right_24"
+        android:backgroundTint="@color/accent"
+        android:onClick="moveRobotManually"
+        android:rotationX="180"
+        app:layout_constraintBottom_toTopOf="@+id/horizontalGuideline9"
+        app:layout_constraintEnd_toStartOf="@+id/verticalGuideline9"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/verticalGuideline8"
+        app:layout_constraintTop_toTopOf="@+id/horizontalGuideline8"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <Button
+        android:id="@+id/moveBackwardButton"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/baseline_arrow_downward_24"
+        android:backgroundTint="@color/accent"
+        android:onClick="moveRobotManually"
+        app:layout_constraintBottom_toTopOf="@+id/horizontalGuideline11"
+        app:layout_constraintEnd_toStartOf="@+id/verticalGuideline8"
+        app:layout_constraintStart_toStartOf="@+id/verticalGuideline7"
+        app:layout_constraintTop_toTopOf="@+id/horizontalGuideline9" />
+
+    <Button
+        android:id="@+id/moveForwardLeftButton"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/baseline_subdirectory_arrow_left_24"
+        android:backgroundTint="@color/accent"
+        android:onClick="moveRobotManually"
+        android:rotationX="184"
+        app:layout_constraintBottom_toTopOf="@+id/horizontalGuideline9"
+        app:layout_constraintEnd_toStartOf="@+id/verticalGuideline7"
+        app:layout_constraintStart_toStartOf="@+id/verticalGuideline"
+        app:layout_constraintTop_toTopOf="@+id/horizontalGuideline8" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/verticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.04" />
+
+    <Button
+        android:id="@+id/moveBackwardRightButton"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/baseline_subdirectory_arrow_right_24"
+        android:backgroundTint="@color/accent"
+        android:onClick="moveRobotManually"
+        app:layout_constraintBottom_toTopOf="@+id/horizontalGuideline11"
+        app:layout_constraintEnd_toStartOf="@+id/verticalGuideline9"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/verticalGuideline8"
+        app:layout_constraintTop_toTopOf="@+id/horizontalGuideline9"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <Button
+        android:id="@+id/moveForwardButton"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/baseline_arrow_upward_24"
+        android:backgroundTint="@color/accent"
+        android:onClick="moveRobotManually"
+        app:layout_constraintBottom_toTopOf="@+id/horizontalGuideline9"
+        app:layout_constraintEnd_toStartOf="@+id/verticalGuideline8"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/verticalGuideline7"
+        app:layout_constraintTop_toTopOf="@+id/horizontalGuideline8"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <Button
+        android:id="@+id/moveBackwardLeftButton"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/baseline_subdirectory_arrow_left_24"
+        android:backgroundTint="@color/accent"
+        android:onClick="moveRobotManually"
+        app:layout_constraintBottom_toTopOf="@+id/horizontalGuideline11"
+        app:layout_constraintEnd_toStartOf="@+id/verticalGuideline7"
+        app:layout_constraintStart_toStartOf="@+id/verticalGuideline"
+        app:layout_constraintTop_toTopOf="@+id/horizontalGuideline9"
+        app:layout_constraintVertical_bias="0.497" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/verticalGuideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.32" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/verticalGuideline8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.68" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/verticalGuideline9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.96" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horizontalGuideline8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horizontalGuideline9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horizontalGuideline11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.95" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+

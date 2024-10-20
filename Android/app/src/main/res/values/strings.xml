@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">MDP Group 29</string>
+    <string name="robot_status">Robot Status: </string>
+    <string name="time_elapsed">Time Elapsed: </string>
+    <string name="set_obstacle">Set Obstacle</string>
+    <string name="set_robot">Set Robot</string>
+    <string name="clear_arena">Clear Arena</string>
+    <string name="send_arena">Send Arena</string>
+    <string name="start_task1">Start Task 1</string>
+    <string name="start_task2">Start Task 2</string>
+    <string name="set_btn_txt">Set %1$s</string>
+    <string name="done">Done</string>
+    <string name="move_forward">Forward</string>
+    <string name="move_backward">Backward</string>
+    <string name="move_forward_left">Forward Left</string>
+    <string name="move_forward_right">Forward Right</string>
+    <string name="move_backward_left">Backward Left</string>
+    <string name="move_backward_right">Backward Right</string>
+    <string name="device_status">Device Status</string>
+    <string name="paired_devices_label">Paired Devices</string>
+    <string name="available_devices_label">Available Devices</string>
+    <string name="start_scanning">Start Scanning</string>
+    <string name="stop_scanning">Stop Scanning</string>
+    <string name="connected">Connected</string>
+    <string name="disconnect_device">Disconnect device</string>
+    <string name="edit_obstacle">Edit Obstacle</string>
+    <string name="x_coordinate">X-coordinate</string>
+    <string name="y_coordinate">Y-coordinate</string>
+    <string name="save">Save</string>
+    <string name="image_direction">Image Direction</string>
+    <string name="cancel">Cancel</string>
+    <string name="send_message">Send Message</string>
+    <string name="receive_messages">Receive Messages</string>
+    <string name="send">Send</string>
+    <string name="obstacle_status">Obstacle Status: </string>
+    <string name="x_y_dir">( - , - , - )</string>
+    <string name="idle">Idle</string>
+    <string name="moving_towards">Moving towards obstacle %1$s</string>
+    <string name="robot_status_message">ObstacleID %1$s detected as imageID %2$s</string>
+    <string name="stop_path_calc">Stop Path Calculation</string>
+    <string name="running">Running...</string>
+    <string name="stop_robot">Stop Robot</string>
+    <string name="calc_path">Calculating path...</string>
+    <string name="check_path">Checking path...</string>
+    <string name="start_simulator">Start Simulator</string>
+    <string name="recognizing">Recognizing image...</string>
+    <string name="task_1_start">Task 1 started</string>
+    <string name="task_2_start">Task 2 started</string>
+    <string name="task_1_ready">Ready to begin task 1</string>
+    <string name="task_1_completed">Task 1 completed!</string>
+    <string name="task_2_completed">Task 2 completed!</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

@@ -1,0 +1,146 @@
+<!-- dialog_edit_obstacle.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="20dp">
+
+    <!-- Title TextView -->
+    <TextView
+        android:id="@+id/modalTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/edit_obstacle"
+        android:textSize="18sp"
+        android:layout_centerHorizontal="true"/>
+
+    <!-- Obstacle Canvas -->
+    <RelativeLayout
+        android:id="@+id/obstacleCanvas"
+        android:layout_width="150dp"
+        android:layout_height="159dp"
+        android:layout_below="@id/modalTitle"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"/>
+
+    <!-- Configuration Layout -->
+    <LinearLayout
+        android:id="@+id/configurations"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/obstacleCanvas">
+
+        <!-- X-Coordinate Layout -->
+        <LinearLayout
+            android:id="@+id/xCoordLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/xCoord"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:layout_marginEnd="10dp"
+                android:text="@string/x_coordinate" />
+
+            <EditText
+                android:id="@+id/xCoordEditText"
+                android:layout_width="50dp"
+                android:layout_height="35dp"
+                android:inputType="number"
+                android:ems="10"
+                android:gravity="center"
+                android:background="@android:drawable/edit_text"
+                android:padding="5dp"/>
+        </LinearLayout>
+
+        <!-- Y-Coordinate Layout -->
+        <LinearLayout
+            android:id="@+id/yCoordLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/yCoord"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:layout_marginEnd="10dp"
+                android:text="@string/y_coordinate" />
+
+            <EditText
+                android:id="@+id/yCoordEditText"
+                android:layout_width="50dp"
+                android:layout_height="35dp"
+                android:inputType="number"
+                android:ems="10"
+                android:gravity="center"
+                android:background="@android:drawable/edit_text"
+                android:padding="5dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Image Direction Layout -->
+    <LinearLayout
+        android:id="@+id/imageDirectionLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_below="@id/configurations"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/imageDirection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_marginEnd="10dp"
+            android:text="@string/image_direction" />
+
+        <Spinner
+            android:id="@+id/imageDirectionSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"/>
+    </LinearLayout>
+
+    <!-- Buttons Layout -->
+    <LinearLayout
+        android:id="@+id/buttonsLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_below="@id/imageDirectionLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp">
+
+        <!-- Save Button -->
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/accent"
+            android:text="@string/save"
+            android:layout_marginEnd="10dp"/>
+
+        <!-- Cancel Button -->
+        <Button
+            android:id="@+id/cancelButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/cancelButton"
+            android:text="@string/cancel"
+            android:layout_marginStart="10dp"/>
+    </LinearLayout>
+
+</RelativeLayout>

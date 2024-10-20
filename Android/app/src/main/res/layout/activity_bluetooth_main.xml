@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bluetoothMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <Button
+        android:id="@+id/bluetoothToggle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/stop_scanning"
+        android:onClick="toggleScan"
+        android:backgroundTint="@color/accent"/>
+
+    <TextView
+        android:id="@+id/Paired"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        android:layout_below="@+id/bluetoothToggle"
+        android:text="@string/available_devices_label"
+        android:layout_marginStart="20dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp"
+        android:layout_below="@+id/Paired"
+        android:orientation="vertical"
+        >
+
+    </androidx.recyclerview.widget.RecyclerView>
+</RelativeLayout>

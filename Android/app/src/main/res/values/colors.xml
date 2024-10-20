@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!--    For background-->
+    <color name="backgroundColor">#353941</color>
+<!--    For texts -->
+    <color name="fontColor">#FBF4F4</color>
+<!--    For tab background-->
+    <color name="tabBackgroundColor">#FBF4F4</color>
+<!--    For tab font-->
+    <color name="tabFontColor">#26282B</color>
+<!--    For buttons-->
+    <color name="accent">#140EC1</color>
+<!--    For arena-->
+    <color name="arena">#26282B</color>
+
+    <color name="transparent">#0000ffff</color>
+    <color name="exploredGrid">#2E7131</color>
+    <color name="doneButton">#4CAF50</color>
+    <color name="exploredObstacle">#8BC34A</color>
+    <color name="robotBody">#2196F3</color>
+    <color name="robotHead">#E69B60</color>
+    <color name="obstacle">#000000</color>
+    <color name="obstacleHead">#FF0000</color>
+    <color name="obstacleNumber">#FFFFFF</color>
+    <color name="cancelButton">#9D9D9D</color>
+
+    <!--    For bluetooth page-->
+    <color name="dark_green">#006400</color>
+
+</resources>
