@@ -19,26 +19,11 @@ public class Robot {
         grid = cells;
     }
 
-    public static boolean simulatorRobot(int xCenter, int yCenter,  String dir) {
-        //System.out.println("Robotcentre: "+"("+xCenter+","+yCenter+"),dir: "+dir+" before setRobotPosition");
-        setRobotPosition(xCenter, yCenter);
-        //System.out.println("Robotcentre: "+"("+xCenter+","+yCenter+"),dir: "+dir+" after setRobotPosition");
-        //System.out.println("Robotcentre: "+"("+xCenter+","+yCenter+"),dir: "+dir+" before setRobotDirection");
-        setRobotDirection(dir);
-        //System.out.println("Robotcentre: "+"("+xCenter+","+yCenter+"),dir: "+dir+" after setRobotDirection");
-        return true;
-    }
-
-
     public static boolean setRobot(int xCenter, int yCenter,  String dir, ArrayList<Obstacle> obstacles){
         boolean obsFlag = checkObs(xCenter,yCenter,obstacles);
         if(!obsFlag){
-            //System.out.println("Robotcentre: "+"("+xCenter+","+yCenter+"),dir: "+dir+" before setRobotPosition");
             setRobotPosition(xCenter, yCenter);
-            //System.out.println("Robotcentre: "+"("+xCenter+","+yCenter+"),dir: "+dir+" after setRobotPosition");
-            //System.out.println("Robotcentre: "+"("+xCenter+","+yCenter+"),dir: "+dir+" before setRobotDirection");
             setRobotDirection(dir);
-            //System.out.println("Robotcentre: "+"("+xCenter+","+yCenter+"),dir: "+dir+" after setRobotDirection");
             return true;
         } else {
             return false;
@@ -51,8 +36,6 @@ public class Robot {
     private static void setRobotPosition(int xCenter, int yCenter){
         int yTopLeft=yCenter-1, xTopLeft= xCenter-1;
         Cell curCell;
-        /*if(yCenter<1 || yCenter>=19 || xCenter>=19 || xCenter<1){
-            System.out.println("Out of bound : Robot need six cells");*/
         if (xTopLeft < 0 || xTopLeft + 2 > 19 || yTopLeft < 0 || yTopLeft + 2 > 19)
         {
             System.out.println("Out of bound : Robot need nine cells");

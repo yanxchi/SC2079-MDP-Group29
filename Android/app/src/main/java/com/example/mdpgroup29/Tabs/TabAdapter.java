@@ -19,7 +19,7 @@ public class TabAdapter extends FragmentStateAdapter {
             case 1:
                 return new ControllerFragment(); // Controller Fragment
             case 2:
-                return new ChatFragment();
+                return new ChatFragment(); // Chat Fragment
             default:
                 return new ArenaFragment(); // Show Arena controls by default
         }

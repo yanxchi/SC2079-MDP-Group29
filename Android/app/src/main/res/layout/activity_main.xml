@@ -23,35 +23,6 @@
         android:layout_marginTop="15dp"
         app:layout_constraintVertical_bias="0.0" />
 
-
-    <!--    <TextView-->
-<!--        android:id="@+id/obstacleStatus"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="@string/obstacle_status"-->
-<!--        android:textColor="@color/fontColor"-->
-<!--        android:textSize="15sp"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/horizontalGuideline1"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/verticalGuideline2"-->
-<!--        app:layout_constraintHorizontal_bias="0.0"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/verticalGuideline1"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/robotStatus"-->
-<!--        app:layout_constraintVertical_bias="0.47" />-->
-
-
-<!--    <TextView-->
-<!--        android:id="@+id/obstacleStatusText"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:textSize="15sp"-->
-<!--        android:text="          "-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/horizontalGuideline1"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/verticalGuideline2"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/verticalGuideline1"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/robotStatusText"-->
-<!--        app:layout_constraintHorizontal_bias="0.33"-->
-<!--        />-->
-
     <TextView
         android:id="@+id/robotStatusText"
         android:layout_width="wrap_content"

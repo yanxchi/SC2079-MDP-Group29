@@ -51,67 +51,6 @@
             app:layout_constraintStart_toStartOf="@+id/verticalGuideline1"
             app:layout_constraintTop_toTopOf="@+id/horizontalGuideline3" />
 
-
-
-<!--        <TextView-->
-<!--            android:id="@+id/textView3"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:gravity="start"-->
-<!--            android:text="@string/receive_messages"-->
-<!--            android:textSize="15sp"-->
-<!--            app:layout_constraintHorizontal_bias="0.000"-->
-<!--            app:layout_constraintBottom_toTopOf="@+id/horizontalGuideline2"-->
-<!--            app:layout_constraintEnd_toStartOf="@+id/verticalGuideline3"-->
-<!--            app:layout_constraintStart_toStartOf="@+id/verticalGuideline2"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/horizontalGuideline1" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/receiveText"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="0dp"-->
-<!--            android:layout_marginStart="5dp"-->
-<!--            android:background="@drawable/edittext_background"-->
-<!--            android:ems="10"-->
-<!--            android:gravity="start|top"-->
-<!--            android:padding="16dp"-->
-<!--            app:layout_constraintBottom_toTopOf="@+id/horizontalGuideline4"-->
-<!--            app:layout_constraintEnd_toStartOf="@+id/verticalGuideline3"-->
-<!--            app:layout_constraintHorizontal_bias="0.0"-->
-<!--            app:layout_constraintStart_toStartOf="@+id/verticalGuideline2"-->
-<!--            app:layout_constraintTop_toTopOf="@+id/horizontalGuideline2"-->
-<!--            app:layout_constraintVertical_bias="0.0"/>-->
-<!--        <ScrollView-->
-<!--            android:id="@+id/scrollView"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="0dp"-->
-<!--            android:background="@drawable/edittext_background"-->
-<!--            android:fillViewport="true"-->
-<!--            android:paddingLeft="15dp"-->
-<!--            android:paddingTop="10dp"-->
-<!--            android:paddingRight="5dp"-->
-<!--            android:paddingBottom="10dp"-->
-<!--            android:scrollbarSize="6dp"-->
-<!--            android:scrollbars="vertical"-->
-<!--            app:layout_constraintBottom_toTopOf="@+id/horizontalGuideline4"-->
-<!--            app:layout_constraintEnd_toStartOf="@+id/verticalGuideline3"-->
-<!--            app:layout_constraintHorizontal_bias="0.0"-->
-<!--            app:layout_constraintStart_toStartOf="@+id/verticalGuideline2"-->
-<!--            app:layout_constraintTop_toTopOf="@+id/horizontalGuideline2"-->
-<!--            app:layout_constraintVertical_bias="0.526"-->
-<!--            tools:ignore="SpeakableTextPresentCheck">-->
-
-<!--                <EditText-->
-<!--                    android:id="@+id/btMessageTextView"-->
-<!--                    android:layout_width="fill_parent"-->
-<!--                    android:layout_height="fill_parent"-->
-<!--                    android:background="@android:color/transparent"-->
-<!--                    android:focusable="false"-->
-<!--                    android:gravity="bottom"-->
-<!--                    android:textSize="16sp" />-->
-
-<!--        </ScrollView>-->
-
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/verticalGuideline1"
             android:layout_width="wrap_content"

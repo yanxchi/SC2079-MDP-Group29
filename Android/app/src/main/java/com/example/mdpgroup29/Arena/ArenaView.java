@@ -74,7 +74,6 @@ public class ArenaView extends View {
         createArena();
         Robot.initializeRobot(cells);
         detector = new ScaleGestureDetector(getContext(), new ScaleListener());
-
         wallPaint = new Paint();
         wallPaint.setColor(getResources().getColor(R.color.transparent));
         gridPaint = new Paint();
@@ -187,7 +186,6 @@ public class ArenaView extends View {
                 obsPaint = exploredObstaclePaint;
             }
             String message = Integer.toString(obstacles.get(i).getRow());
-            Log.d("DRAWING", message);
             plotSquare(canvas,(float) obstacles.get(i).getCol()+1,19 - (float) obstacles.get(i).getRow(), obsPaint, txtPaint, String.valueOf(id));
             plotObstacleDir(canvas,obstacles.get(i));
         }
@@ -200,7 +198,6 @@ public class ArenaView extends View {
                 for (int j=0; j<Robot.robotMatrix.length; j++){ // iterate through cols: j = y coordinate
                     robotCell = Robot.robotMatrix[i][j];
                     if(robotCell.getType()==Cell.CellType.ROBOT_HEAD){
-                        Log.d("headRow", Integer.toString(robotCell.getRow()));
                         robotPaint = robotHeadPaint;
                     }
                     else if(robotCell.getType()== Cell.CellType.ROBOT_BODY) robotPaint = robotBodyPaint;
@@ -289,7 +286,6 @@ public class ArenaView extends View {
                                 obstacleSelected = false;
                             } else if(obstacleSelected && event.getAction()==MotionEvent.ACTION_MOVE){
                                 cells[editingObs.getCol()][editingObs.getRow()].setType(Cell.CellType.EMPTY);
-                                Log.d("obstacleyc", Integer.toString(editingObs.getRow()) + " , " + Integer.toString(editingObs.getCol()) + " set to " + editingObs.getType().toString());
                                 dragObstacle(event, entry.getKey(), editingObs);
                             }
 
@@ -561,19 +557,6 @@ public class ArenaView extends View {
     }
     public String moveRobot(String dir,String movement){
         Robot.moveRobot(dir,movement,obstacles);
-//        if(movement.equals("F")){
-//            btService.write("f", false);
-//        } else if(movement.equals("R")){
-//            btService.write("r", false);
-//        } else if(movement.equals("L")){
-//            btService.write("l", false);
-//        } else if(movement.equals("B")){
-//            btService.write("b", false);
-//        } else if(movement.equals("BL")){
-//            btService.write("bl", false);
-//        } else if(movement.equals("BR")){
-//            btService.write("br", false);
-//        }
         invalidate();
         return Robot.robotDir;
     }

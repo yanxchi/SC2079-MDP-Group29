@@ -150,18 +150,7 @@ public class  BluetoothService {
             Toast.makeText(mContext, "Bluetooth not connected!", Toast.LENGTH_SHORT).show();
             return false;
         }
-        // comment out the \n below only when performing checklist
-//        message = message + "\n";
-//        if (DEBUG) {
-//            try {
-//                mConnectedThread.write(message.getBytes("US-ASCII"));
-//            } catch (UnsupportedEncodingException e) {
-//                mConnectedThread.write(message.getBytes());
-//            }
-//
-//        } else {
         mConnectedThread.write(message.getBytes());
-//        }
         return true;
     }
 
@@ -175,7 +164,6 @@ public class  BluetoothService {
     public void clientConnect(String address, String name, Activity context) {
         mClientThread = new ConnectAsClientThread(address, name, context);
         mClientThread.start();
-        Log.d("bluetoothyc", "trying to connect to: " +name);
         // when you call .start() it will create new thread of execution and
         // invoke run() on the new thread.
     }
@@ -212,29 +200,6 @@ public class  BluetoothService {
         }
         return  device.createRfcommSocketToServiceRecord(BT_MODULE_UUID);
     }
-//    // Trying to create Bluetooth socket
-//    private static BluetoothSocket createBluetoothSocket(BluetoothDevice device) throws IOException {
-//        BluetoothSocket socket = null;
-//        try {
-//            // Try using the insecure RFComm socket method first
-//            socket = (BluetoothSocket) device.getClass().getMethod("createRfcommSocket", int.class).invoke(device, 1);
-//        } catch (Exception e) {
-//            Log.d("bluetoothyc", "Insecure socket creation failed: " + e.getMessage());
-//        }
-//
-//        // If the insecure RFComm socket creation fails, use reflection to try the fallback method
-//        if (socket == null) {
-//            try {
-//                // Use reflection to create a socket with the fallback port number
-//                socket = (BluetoothSocket) device.getClass().getMethod("createRfcommSocket", int.class).invoke(device, 1);
-//            } catch (Exception e) {
-//                Log.d("bluetoothyc", "Fallback socket creation failed: " + e.getMessage());
-//                throw new IOException("Could not create Bluetooth socket", e);
-//            }
-//        }
-//
-//        return socket;
-//    }
 
     private static class ConnectAsClientThread extends Thread {
         public Activity context;
@@ -255,14 +220,6 @@ public class  BluetoothService {
 
             try {
                 BluetoothService.mBluetoothSocket = createBluetoothSocket(device);
-                Log.d("bluetoothyc", "SOCKET CREATED");
-
-                // Check if the socket is valid
-                if (BluetoothService.mBluetoothSocket == null) {
-                    Log.d("bluetoothyc", "socket creation failed after creation");
-                }
-
-
             } catch (IOException e) {
                 fail = true;
                 Intent intent = new Intent("message_received");
@@ -273,19 +230,12 @@ public class  BluetoothService {
             try {
                 // Initiate connection process between local device and remote device using the socket.
                 // Check if the socket is valid
-                if (BluetoothService.mBluetoothSocket == null) {
-                    Log.d("bluetoothyc", "socket failed before connection");
-                }else{
-                    Log.d("bluetoothyc", BluetoothService.mBluetoothSocket.toString());
-                }
                 BluetoothService.mBluetoothSocket.connect();
-                Log.d("bluetoothyc", "CONNECTION SUCCESSFUL");
                 BluetoothService.mConnectedDevice = device;
             } catch (IOException e) {
                 try {
                     fail = true;
                     System.out.println(e.getMessage());
-                    Log.d("bluetoothyc", "connection failed " + e.getMessage());
                     BluetoothService.mBluetoothSocket.close();
                 } catch (IOException e2) {
                     Intent intent = new Intent("message_received");

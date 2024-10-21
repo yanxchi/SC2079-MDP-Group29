@@ -95,8 +95,6 @@ public class MainActivity extends AppCompatActivity implements ObstacleDialogueF
             }
         });
 
-
-        // ----------------------------------BLUETOOTH---------------------------------------------
         // Make device discoverable and accept connections
         btService.serverStartListen(this);
         // register event receivers
@@ -119,8 +117,6 @@ public class MainActivity extends AppCompatActivity implements ObstacleDialogueF
         });
 
 
-
-        // -------------------------------TAB VIEW ------------------------------------------------
         TabLayout tabLayout = findViewById(R.id.tabLayout);
         ViewPager2 viewPager = findViewById(R.id.viewPager);
 
@@ -164,7 +160,6 @@ public class MainActivity extends AppCompatActivity implements ObstacleDialogueF
         arena.clearArena();
     }
 
-    // -------------------------------- OBSTACLE EDITING -------------------------------------------
     private void showObstacleDialog() {
         int obsIndex = arena.obstacles.indexOf(arena.editingObs);
         int obsX = arena.editingObs.getCol();
@@ -200,8 +195,6 @@ public class MainActivity extends AppCompatActivity implements ObstacleDialogueF
                 arena.obstacles.get(obsIndex).setImageDirection(direction);
                 arena.obstacles.get(obsIndex).setCol(curCell.getCol());
                 arena.obstacles.get(obsIndex).setRow(curCell.getRow());
-                Log.d("obstacleyc", Integer.toString(oldCell.getCol()) + " , " + Integer.toString(oldCell.getRow()) + "set to " + arena.cells[oldCell.getCol()][oldCell.getRow()].getType());
-//                oldCell.setType(Cell.CellType.EMPTY);
             } else if (curCell.getCol() == x && curCell.getRow() == y && !curCell.getType().equals(Cell.CellType.EMPTY)) {
                 arena.obstacles.get(obsIndex).setImageDirection(direction);
                 if (!(curCell.getCol() == oldCell.getCol() && curCell.getRow() == oldCell.getRow())) {
@@ -215,7 +208,6 @@ public class MainActivity extends AppCompatActivity implements ObstacleDialogueF
         arena.invalidate();
     }
 
-    // -----------------------------------MANUAL CONTROLLER-------------------------------------
     // Method to handle button clicks for robot movement
     public void moveRobotManually(View view) {
         Button pressedBtn = (Button) view;
@@ -280,13 +272,11 @@ public class MainActivity extends AppCompatActivity implements ObstacleDialogueF
         if(Robot.robotMatrix[1][1] == null){
             System.out.println("Robot is not set up on map");
         }else{
-//            btService.write(String.format("MOVE/%s", Robot.robotDir), DEBUG);
             if(robotDir != null){ //just to catch error
                 robotDir = arena.moveRobot(robotDir,Robot.robotDir);
             }
         }
     }
-    // --------------------------------- BLUETOOTH --------------------------------
 
     // Create a BroadcastReceiver for message_received.
     private final BroadcastReceiver msgReceiver = new BroadcastReceiver() {
@@ -304,8 +294,6 @@ public class MainActivity extends AppCompatActivity implements ObstacleDialogueF
             for (String message : commandArr) {
                 try {
                     String[] messageArr = message.split("\\|"); // remove header
-//                    if (messageArr.length > 1) messageArr = messageArr[1].split(DELIMITER);
-//                    else messageArr = messageArr[0].split(DELIMITER); //just takes away |
                     for (String messageElement: messageArr){
                         String[] messageA = messageElement.split(DELIMITER);
                         switch (messageA[0]) {
@@ -333,7 +321,6 @@ public class MainActivity extends AppCompatActivity implements ObstacleDialogueF
                                         pathCoordinates.add(new double[]{y, x, theta});
                                     }
                                 }
-                                Log.d("DEBUGYC", String.valueOf(pathCoordinates.size()));
                                 pathTask(arena, pathCoordinates);
                                 break;
                             }
@@ -379,9 +366,7 @@ public class MainActivity extends AppCompatActivity implements ObstacleDialogueF
                                 if (((Button) findViewById(R.id.startTask1)).getText().toString().equals(getString(R.string.running))) {
                                     startStopTimer(findViewById(R.id.startTask1));
                                     TextView posTV = findViewById(R.id.robotStatusText);
-//                                TextView statTV = findViewById(R.id.obstacleStatusText);
                                     if (posTV != null) posTV.setText(R.string.task_1_completed);
-//                                if (statTV != null) statTV.setText(R.string.idle);
                                     String timeTaken = ((TextView) findViewById(R.id.timeElapsedText)).getText().toString();
                                     displayMessage("Task 1 complete!\nTime taken: " + timeTaken);
                                 } else if (((Button) findViewById(R.id.startTask2)).getText().toString().equals(getString(R.string.running))) {
@@ -579,11 +564,9 @@ public class MainActivity extends AppCompatActivity implements ObstacleDialogueF
         logs.setText(null);
     }
 
-    // -----------------------------------ALGO PATH SIMULATOR--------------------------------------
 
     // obstacles are all placed
-    // setSendArenaButton button is pressed -- obstacle info is printed in logcat
-    public void printObstacles(View view) {
+    public void sendArena(View view) {
         Button pressedBtn = (Button) view;
         int id = pressedBtn.getId();
 
@@ -630,7 +613,6 @@ public class MainActivity extends AppCompatActivity implements ObstacleDialogueF
             targetListBuilder.append("]");
 
             // Print the target list string to the log
-            Log.d("MainActivity", targetListBuilder.toString());
             btService.write(rpiObstacleList.toString(), false);
             TextView robotStatus = findViewById(R.id.robotStatusText);
             robotStatus.setText(getString(R.string.calc_path));
@@ -688,138 +670,6 @@ public class MainActivity extends AppCompatActivity implements ObstacleDialogueF
         }).start();
     }
 
-//    //startPathCalc button is pressed -- obstacles will be displayed and robot also moves on grid
-//    public void startSimulation(View view) {
-//        Button pressedBtn = (Button) view;
-//        int id = pressedBtn.getId();
-//
-//        if (id == R.id.startPathCalc) {
-//            //obstacles loaded from res/raw/obstacles.txt
-//            ArrayList<Obstacle> obstacleList = loadObstacles();
-//
-//            valid_pos = arena.setRobot(1, 1, "N");
-//
-//            //set the loaded obstacles on the grid
-//            if (obstacleList != null && !obstacleList.isEmpty()) {
-//                arena.obstacles.clear();  // Clear any existing obstacles
-//                arena.obstacles.addAll(obstacleList);  // Add the new obstacles to the arena
-//                arena.invalidate();
-//            }
-//
-//            //call the pathSimulator function to simulate the robot's movement
-//            pathSimulator(view);
-//        }
-//    }
-
-    //reads the obstacle info from obstacle.txt in res/raw when
-    public ArrayList<Obstacle> loadObstacles() {
-        ArrayList<Obstacle> obstacles = new ArrayList<>();
-        int obstacleID = 1;  // Start obstacle ID from 1
-
-        try {
-            // Open the obstacles.txt file from the res/raw directory
-            InputStream inputStream = getResources().openRawResource(R.raw.obstacles); // R.raw.obstacles refers to res/raw/obstacles.txt
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-            String line;
-
-            // Read each line from the file
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split("\\s+"); // Split the line by whitespace
-
-                if (parts.length == 3) {
-                    // Parse the coordinates and direction from the file
-                    int yCoord = Integer.parseInt(parts[0]);
-                    int xCoord = Integer.parseInt(parts[1]);
-                    String direction = parts[2];
-
-                    // Create a new obstacle
-                    Obstacle obstacle = new Obstacle(xCoord, yCoord, obstacleID);
-
-                    // Set the direction for the obstacle
-                    obstacle.setImageDirection(Obstacle.ImageDirection.valueOf(direction.toUpperCase(Locale.US)));
-
-                    // Add the obstacle to the list
-                    obstacles.add(obstacle);
-
-                    // Increment the obstacle ID for the next obstacle
-                    obstacleID++;
-                }
-            }
-            reader.close(); // Close the reader after use
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return obstacles;
-    }
-
-    //reads the path info from path.txt in res/raw
-    public ArrayList<double[]> loadPathCoordinates(Context context) {
-        ArrayList<double[]> pathCoordinates = new ArrayList<>();
-
-        try {
-            // Open the text file from the res/raw directory
-            InputStream inputStream = context.getResources().openRawResource(R.raw.path); // R.raw.path refers to res/raw/path.txt
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-            String line;
-
-            // Read each line from the file
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split("\\s+"); // Split the line by any whitespace
-
-                if (parts.length >= 3) {
-                    double y = Double.parseDouble(parts[0]);
-                    double x = Double.parseDouble(parts[1]);
-                    double theta = Double.parseDouble(parts[2]);
-                    pathCoordinates.add(new double[]{y, x, theta});
-                }
-            }
-
-            reader.close(); // Close the reader after use
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return pathCoordinates;
-    }
-
-    //simulates robot when setSendArenaButton button is pressed based on the coordinated retrieved by loadPathCoordinates using moveRobotTo
-    public void pathSimulator(View view) {
-            // Load the path coordinates from the external file
-            ArrayList<double[]> pathCoordinates = loadPathCoordinates(this);
-
-            // Run the path simulation in a background thread
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    for (double[] coords : pathCoordinates) {
-                        double y = (double)Math.round(coords[0] * 100000d) / 100000d;
-                        double x = (double)Math.round(coords[1] * 100000d) / 100000d;
-                        double theta = coords[2];
-
-                        // Run on UI thread to update the robot position
-                        view.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                if (!moveRobotTo(y, x, theta)) {
-                                    System.out.println("Movement stopped due to out of bounds at (" + y + ", " + x + ")");
-                                }
-                            }
-                        });
-
-                        try {
-                            // Sleep for 100 milliseconds between each movement to show robot progression
-                            Thread.sleep(100);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-            }).start();
-    }
-
     //function to display the robot movement on the grid
     private boolean moveRobotTo(double y, double x, double theta) {
         int gridX = (int) Math.floor(x);
@@ -836,14 +686,6 @@ public class MainActivity extends AppCompatActivity implements ObstacleDialogueF
 
     //converts radians from algo to directions (N,S,E,W)
     public static String radiansToDirection(double theta) {
-        // normalize theta to be within -pi to pi
-       /* theta = theta % (2 * Math.PI);  // Normalize to [0, 2π)
-        if (theta < -Math.PI) {
-            theta += 2 * Math.PI;  // Adjust if less than -π
-        } else if (theta > Math.PI) {
-            theta -= 2 * Math.PI;  // Adjust if greater than π
-        }*/
-
         // radians to direction
         if (theta > Math.PI / 4 && theta <= 3 * Math.PI / 4) {
             return "N";  // North from π/4 to 3π/4
