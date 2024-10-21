@@ -183,21 +183,6 @@ def distance_single():# Read the image
             logging.error(f"Failed to save file: {str(e)}")
             return jsonify({"error": f"Failed to save file: {str(e)}"}), 500
     img = cv2.imread(os.path.join('uploads', filename))
-
-    # Get the optimal camera matrix for better undistortion
-    # dist_pickle = pickle.load(open('dist_pickle.p', 'rb'))
-    # camera_matrix = dist_pickle['mtx']
-    # dist_coeffs = dist_pickle['dist']
-    
-    # h, w = img.shape[:2]
-    # new_camera_matrix, roi = cv2.getOptimalNewCameraMatrix(camera_matrix, dist_coeffs, (w, h), 1, (w, h))
-
-    # Undistort the image
-    # undistorted_img = cv2.undistort(img, camera_matrix, dist_coeffs, None, new_camera_matrix)
-    # x, y, w, h = roi
-    # undistorted_img = undistorted_img[y:y+h, x:x+w]
-
-    # img = cv2.resize(undistorted_img, (1024, 720))
     
     # Perform inference
     results = modelt2(img)
@@ -252,14 +237,6 @@ def distance_single():# Read the image
     
     # Create a reverse mapping
     id_to_name = {v: k for k, v in name_to_id.items() if v != 'NA'}
-    
-    # Get the most common class ID (excluding background class if applicable)
-    if len(class_ids) > 0:
-        most_common_id = np.bincount(class_ids).argmax()
-        image_id = id_to_name.get(most_common_id, 'NA')
-    else:
-        image_id = 'NA'  # No detection
-    
 
     output = {"path": [], "det": []}
     # # Annotate the image
@@ -270,14 +247,8 @@ def distance_single():# Read the image
         width = abs(bbox[2] - bbox[0])
         conf = det[4].cpu().numpy()
         class_id = int(det[5].cpu().numpy())
-        # if class_id == 0:
-        #     continue
-        # if class_id != 1 and class_id != 2:
-        #     continue
         # Get the class name
         class_name = id_to_name.get(class_id, 'Unknown')
-        
-        # width, height = (height + width) /2, (height + width) /2
 
         # Draw bounding box
         if class_id == 2:
@@ -342,21 +313,6 @@ def distance_triple():# Read the image
             logging.error(f"Failed to save file: {str(e)}")
             return jsonify({"error": f"Failed to save file: {str(e)}"}), 500
     img = cv2.imread(os.path.join('uploads', filename))
-
-    # Get the optimal camera matrix for better undistortion
-    # dist_pickle = pickle.load(open('dist_pickle.p', 'rb'))
-    # camera_matrix = dist_pickle['mtx']
-    # dist_coeffs = dist_pic÷kle['dist']
-    
-    # h, w = img.shape[:2]
-    # new_camera_matrix, roi = cv2.getOptimalNewCameraMatrix(camera_matrix, dist_coeffs, (w, h), 1, (w, h))
-
-    # Undistort the image
-    # undistorted_img = cv2.undistort(img, camera_matrix, dist_coeffs, None, new_camera_matrix)
-    # x, y, w, h = roi
-    # undistorted_img = undistorted_img[y:y+h, x:x+w]
-
-    # img = cv2.resize(undistorted_img, (1024, 720))
     
     # Perform inference
     results = modelt2(img)
@@ -403,21 +359,9 @@ def distance_triple():# Read the image
         "36:Up Arrow": 30
     }
 
-    # name_to_id = {
-    #     "0:Bullseye": 0,
-    #     "39:Left Arrow": 1,
-    #     "38:Right Arrow": 2,
-    # }
     
     # Create a reverse mapping
     id_to_name = {v: k for k, v in name_to_id.items() if v != 'NA'}
-    
-    # Get the most common class ID (excluding background class if applicable)
-    if len(class_ids) > 0:
-        most_common_id = np.bincount(class_ids).argmax()
-        image_id = id_to_name.get(most_common_id, 'NA')
-    else:
-        image_id = 'NA'  # No detection
     
     if dir1 == "L":
         bullseye = (1000, None)
@@ -540,16 +484,6 @@ def distance_triple():# Read the image
     return jsonify(output)
 
 
-# @app.route('/stitch', methods=['GET'])
-# def stitch():
-#     """
-#     This is the main endpoint for the stitching command. Stitches the images using two different functions, in effect creating two stitches, just for redundancy purposes
-#     """
-#     img = stitch_image()
-#     img.show()
-#     img2 = stitch_image_own()
-#     img2.show()
-#     return jsonify({"result": "ok"})
 @app.route('/stitch', methods=['GET'])
 def stitch():
     try:
@@ -591,8 +525,6 @@ def predict_image_week_9(filename, model):
     
     # Perform inference
     results = model(img)
-
-    #print(results2[0].boxes)
     
     # Process results
     detections = results[0].boxes.data  # Get detection data

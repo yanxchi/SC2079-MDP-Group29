@@ -126,11 +126,5 @@ class Path:
             if self.forward: path.append((new_y+start_y, new_x+start_x, start_theta))
             else: path.append((new_y+start_y, new_x+start_x, M(start_theta+np.pi)))
         path.append(goal)
-        # else:
-        #     for i in np.arange(0, -np.sqrt(v1x**2+v1y**2), kwargs.get('line_resolution', -0.1)):
-        #         new_x = v1x * i/np.sqrt(v1x**2+v1y**2)
-        #         new_y = v1y * i/np.sqrt(v1x**2+v1y**2)
-        #         path.append((new_y+start_y, new_x+start_x, start_theta))
-        #     path.append(goal)
         
         return path
